@@ -1,12 +1,7 @@
 // this method checks for vowels in a string and returns the appropriate boolean
 String.prototype.hasVowels = function() {
   var vowRegex = /[aeiou]/gi;
-  if (this.match(vowRegex)) {
-    return true;
-  }
-  else {
-    return false;
-  }
+  return vowRegex.test(this);
 };
 
 // this method returns a string with all characters in uppercase
@@ -36,12 +31,7 @@ String.prototype.ucFirst = function() {
 // this method returns the appropriate boolean whether or not a string is a question
 String.prototype.isQuestion = function() {
   var queRegex = /\?$/;
-  if (this.match(queRegex)) {
-    return true;
-  }
-  else {
-    return false;
-  }
+  return queRegex.test(this);
 };
 
 // this method returns a list of words in the string as an array
@@ -54,9 +44,10 @@ String.prototype.wordCount = function() {
   return this.words().length;
 };
 
-// String.prototype.toCurrency = function() {
-// this.replace(/\d$.../g, ','); 
-// };
+// this method returns the currency representation of a string
+String.prototype.toCurrency = function() {
+  return this.replace(/(\d(?=(\d{3})+\.))/g, '$&,');
+};
 
 // this method returns a number representation of the currency string
 String.prototype.fromCurrency = function() {
